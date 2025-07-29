@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/income.css') }}">
+<div class="form-container">
+    <h1>Add Expense</h1>
+    <form method="POST" class="transaction-form">
+        {{ form.hidden_tag() }}  <!-- CSRF token for security -->
+
+        <!-- Title Field -->
+        <div class="form-group">
+            {{ form.title.label }}<br>
+            {{ form.title(size=32, class="form-control") }}<br>
+            {% for error in form.title.errors %}
+                <span class="error">{{ error }}</span><br>
+            {% endfor %}
+        </div>
+
+        <!-- Amount and Currency Fields -->
+        <div class="form-group">
+            {{ form.amount.label }}<br>
+            <div class="amount-input">
+                 <!-- Currency dropdown -->
+                {{ form.amount(size=32, class="form-control") }}<br>  <!-- Amount input -->
+            </div>
+            {% for error in form.amount.errors %}
+                <span class="error">{{ error }}</span><br>
+            {% endfor %}
+        </div>
+
+        <!-- Date Field -->
+        <div class="form-group">
+            {{ form.date.label }}<br>
+            {{ form.date(size=32, class="form-control") }}<br>
+            {% for error in form.date.errors %}
+                <span class="error">{{ error }}</span><br>
+            {% endfor %}
+        </div>
+
+        <!-- Category Field -->
+        <div class="form-group">
+            {{ form.category.label }}<br>
+            {{ form.category(class="form-control") }}<br>
+            {% for error in form.category.errors %}
+                <span class="error">{{ error }}</span><br>
+            {% endfor %}
+        </div>
+
+        <!-- Description Field -->
+        <div class="form-group">
+            {{ form.description.label }}<br>
+            {{ form.description(rows=4, cols=32, class="form-control") }}<br>
+            {% for error in form.description.errors %}
+                <span class="error">{{ error }}</span><br>
+            {% endfor %}
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group">
+            {{ form.submit(class="btn btn-primary") }}  <!-- Use Bootstrap's btn class -->
+        </div>
+    </form>
+</div>
+{% endblock %}

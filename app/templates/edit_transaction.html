@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/transaction.css') }}">
+<div class="form-container">
+    <h1>Edit Transaction</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.title.label }}
+            {{ form.title(class="form-control", placeholder="Enter title") }}
+        </div>
+        <div class="form-group">
+            {{ form.amount.label }}
+            {{ form.amount(class="form-control", placeholder="Enter amount") }}
+        </div>
+        <div class="form-group">
+            {{ form.date.label }}
+            {{ form.date(class="form-control") }}
+        </div>
+        {% if transaction_type == 'income' %}
+        <div class="form-group">
+            {{ form.source.label }}
+            {{ form.source(class="form-control", placeholder="Enter source") }}
+        </div>
+        {% else %}
+        <div class="form-group">
+            {{ form.category.label }}
+            {{ form.category(class="form-control", placeholder="Enter category") }}
+        </div>
+        {% endif %}
+        <div class="form-group">
+            {{ form.description.label }}
+            {{ form.description(class="form-control", placeholder="Enter description") }}
+        </div>
+        <button type="submit" class="btn btn-primary">Update Transaction</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WealthWise</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="navbar-container">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/logo.jpeg') }}" alt="WealthWise Logo">
+                <span>WealthWise</span>
+            </div>
+            <ul>
+                <li><a href="{{ url_for('routes.home') }}">Home</a></li>
+                <li><a href="{{ url_for('routes.add_income') }}">Add Income</a></li>
+                <li><a href="{{ url_for('routes.add_expense') }}">Add Expense</a></li>
+                <li><a href="{{ url_for('routes.view_transactions') }}">View Transactions</a></li>
+                <li><a href="{{ url_for('routes.forecast_insights') }}">Budget Forecast & Insights</a></li>
+                {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('routes.logout') }}">Logout</a></li>
+                {% else %}
+                <li><a href="{{ url_for('routes.auth') }}">Login/Register</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Content Block -->
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Footer -->
+   
+</body>
+</html>

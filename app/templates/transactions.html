@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/income.css') }}">
+<div class="transactions-container">
+    <h1>Transactions</h1>
+    
+    <!-- Form to Add New Transaction -->
+    
+    <!-- Transactions Table -->
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+            <tr>
+                <td>{{ transaction.title }}</td>
+                <td>{{ transaction.amount }}</td>
+                <td>{{ transaction.date.strftime('%Y-%m-%d') }}</td>
+                <td>{{ transaction.type }}</td>
+                <td>
+                    <a href="{{ url_for('routes.edit_transaction', transaction_id=transaction.id) }}" class="button">✏️ Edit</a>
+                    <form action="{{ url_for('routes.delete_transaction', transaction_id=transaction.id) }}" method="POST" style="display: inline;">
+                        <button type="submit" class="button danger">🗑️ Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

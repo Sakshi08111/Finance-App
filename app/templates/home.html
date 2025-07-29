@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="home-container">
+    <div class="home-content">
+        <h1>Welcome to WealthWise, {{ current_user.username }}!</h1>
+        <p class="description">
+            <i class="fas fa-chart-line"></i> Track your income and expenses...
+            <i class="fas fa-file-invoice"></i> Generate detailed reports...
+        </p>
+        <p class="description">
+            Take control of your finances with our easy-to-use tools. Track your income and expenses, 
+            generate detailed reports, and plan your budget effectively. Whether you're saving for a 
+            big purchase or just want to manage your daily spending, our app has you covered.
+        </p>
+        <a href="{{ url_for('routes.add_income') }}" class="cta-button">Get Started</a>
+    </div>
+    <div class="home-image">
+        <img src="{{ url_for('static', filename='images/image1.jpeg') }}" alt="Finance Illustration">
+    </div>
+</div>
+{% endblock %}

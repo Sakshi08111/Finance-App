@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+<div class="auth-hero">
+    <div class="auth-hero-content">
+        <h1>Welcome to WealthWise</h1>
+        <p>Your Personal Finance Manager</p>
+        <!-- <p>Track your income and expenses, generate detailed reports, and plan your budget effectively.</p>
+        <img src="{{ url_for('static', filename='images/finance_illustration.jpeg') }}" alt="Finance Illustration" class="auth-hero-image"> -->
+    </div>
+</div>
+
+<div class="auth-container">
+    <!-- Toggle Buttons -->
+    <div class="auth-toggle">
+        <button id="login-toggle" class="active">Login</button>
+        <button id="register-toggle">Register</button>
+    </div>
+
+    <!-- Login Form -->
+    <div id="login-form" class="auth-form active">
+        <h1>Login</h1>
+        <form method="POST" action="{{ url_for('routes.auth') }}">
+            <input type="hidden" name="login" value="true">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <button type="submit">Login</button>
+        </form>
+        <p>Not registered? <a href="#" id="switch-to-register">Register here</a></p>
+    </div>
+
+    <!-- Register Form -->
+    <div id="register-form" class="auth-form">
+        <h1>Register</h1>
+        <form method="POST" action="{{ url_for('routes.auth') }}">
+            <input type="hidden" name="register" value="true">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <button type="submit">Register</button>
+        </form>
+        <p>Already registered? <a href="#" id="switch-to-login">Login here</a></p>
+    </div>
+</div>
+
+<script>
+    // Toggle between Login and Register forms
+    document.getElementById('login-toggle').addEventListener('click', function() {
+        document.getElementById('login-form').style.display = 'block';
+        document.getElementById('register-form').style.display = 'none';
+        this.classList.add('active');
+        document.getElementById('register-toggle').classList.remove('active');
+    });
+
+    document.getElementById('register-toggle').addEventListener('click', function() {
+        document.getElementById('register-form').style.display = 'block';
+        document.getElementById('login-form').style.display = 'none';
+        this.classList.add('active');
+        document.getElementById('login-toggle').classList.remove('active');
+    });
+
+    // Switch to Register form from Login form
+    document.getElementById('switch-to-register').addEventListener('click', function(event) {
+        event.preventDefault();
+        document.getElementById('register-form').style.display = 'block';
+        document.getElementById('login-form').style.display = 'none';
+        document.getElementById('register-toggle').classList.add('active');
+        document.getElementById('login-toggle').classList.remove('active');
+    });
+
+    // Switch to Login form from Register form
+    document.getElementById('switch-to-login').addEventListener('click', function(event) {
+        event.preventDefault();
+        document.getElementById('login-form').style.display = 'block';
+        document.getElementById('register-form').style.display = 'none';
+        document.getElementById('login-toggle').classList.add('active');
+        document.getElementById('register-toggle').classList.remove('active');
+    });
+</script>
+{% endblock %}

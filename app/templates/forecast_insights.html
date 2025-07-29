@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/forecast_insights.css') }}">
+<div class="forecast-insights-container">
+    <!-- Budget Forecast Section -->
+    <div class="forecast-section">
+        <h1>Budget Forecast</h1>
+        <form method="POST" action="{{ url_for('routes.forecast_insights') }}">
+            <label for="forecast_period">Forecast Period (Months):</label>
+            <input type="number" id="forecast_period" name="forecast_period" value="6" min="1" required>
+            
+            <label for="expected_income">Expected Income:</label>
+            <input type="number" id="expected_income" name="expected_income" step="0.01" required>
+            
+            <label for="expected_expenses">Expected Expenses:</label>
+            <input type="number" id="expected_expenses" name="expected_expenses" step="0.01" required>
+            
+            <button type="submit">Generate Forecast</button>
+        </form>
+
+        <!-- Forecast Results -->
+        {% if forecasted_income %}
+        <div class="forecast-results">
+            <h2>Forecast Results</h2>
+            <p><strong>Forecast Period:</strong> {{ forecast_period }} months</p>
+            <p><strong>Forecasted Income:</strong> {{ forecasted_income }}</p>
+            <p><strong>Forecasted Expenses:</strong> {{ forecasted_expenses  }}</p>
+            <p><strong>Forecasted Savings:</strong> {{ forecasted_savings }}</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Insights Section -->
+    <div class="insights-section">
+        <h1>Insights</h1>
+        {% if insights %}
+        <div class="insights-list">
+            {% for insight in insights %}
+            <p>{{ insight }}</p>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>No insights available. Generate a forecast to see insights.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
