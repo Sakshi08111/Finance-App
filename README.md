@@ -35,6 +35,7 @@ A full-featured web application built to help users track their income, expenses
 <img width="1920" height="1080" alt="Screenshot (1210)" src="https://github.com/user-attachments/assets/fe4f41b4-d2cb-4c16-b5f9-ba9bbde4a14b" />
 <img width="1920" height="1080" alt="Screenshot (1209)" src="https://github.com/user-attachments/assets/6ae2d6b4-afd2-4e9e-99bd-376b392d96c1" />
 <img width="1920" height="1080" alt="Screenshot (1208)" src="https://github.com/user-attachments/assets/eaeff18d-5b81-4e6b-9715-361977f3593d" />
+Home Page 
 <img width="1920" height="832" alt="Screenshot (1207)" src="https://github.com/user-attachments/assets/3a19031d-b9e2-416e-a4cc-439de0d95816" />
 
 
